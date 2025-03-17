@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Заработок на рекомендациях банковских продуктов</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <!-- Прелоадер -->
+    <div id="loader" class="loader">
+        <div class="loader-spinner"></div>
+        <div class="loader-text">Загрузка...</div>
+    </div>
+    
+    <!-- Контейнер для контента -->
+    <div id="content" class="content"></div>
+    
+    <!-- Шаблоны страниц -->
+    <!-- Шаблон главной страницы -->
+    <template id="home-template">
+        <div class="home-page">
+            <div class="welcome-section">
+                <h1>Привет, <span id="user-name">Пользователь</span>!</h1>
+                <p>Зарабатывай на рекомендациях банковских продуктов</p>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-value" id="user-balance">0₽</div>
+                    <div class="stat-label">Баланс</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💵</div>
+                    <div class="stat-value" id="user-earned">0₽</div>
+                    <div class="stat-label">Заработано</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-value" id="user-refs">0</div>
+                    <div class="stat-label">Рефералов</div>
+                </div>
+            </div>
+            
+            <div class="referral-section">
+                <h2>Твоя реферальная ссылка</h2>
+                <div class="referral-link">
+                    <input type="text" id="referral-link" readonly>
+                    <button id="copy-referral-button">Копировать</button>
+                </div>
+                <button id="share-referral-button" class="share-button">Поделиться с друзьями</button>
+            </div>
+            
+            <div class="categories-section">
+                <h2>Категории продуктов</h2>
+                <div class="categories-container" id="categories-list">
+                    <!-- Категории будут добавлены динамически -->
+                </div>
+            </div>
+            
+            <div class="popular-section">
+                <h2>Популярные продукты</h2>
+                <div class="products-container" id="popular-products">
+                    <!-- Популярные продукты будут добавлены динамически -->
+                </div>
+            </div>
+        </div>
+    </template>
+    
+    <!-- Шаблон страницы каталога -->
+    <template id="catalog-template">
+        <div class="catalog-page">
+            <div class="catalog-header">
+                <h1>Каталог продуктов</h1>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Поиск продуктов...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </div>
+            
+            <div class="categories-tabs" id="categories-tabs">
+                <!-- Категории будут добавлены динамически -->
+            </div>
+            
+            <div class="products-grid" id="products-grid">
+                <!-- Продукты будут добавлены динамически -->
+            </div>
+        </div>
+    </template>
+    
+    <!-- Шаблон страницы продукта -->
+    <template id="product-template">
+        <div class="product-page">
+            <div class="product-header">
+                <button id="back-to-catalog" class="back-button">← Назад</button>
+                <h1 id="product-name">Название продукта</h1>
+            </div>
+            
+            <div class="product-main">
+                <div id="product-image" class="product-image"></div>
+                <div class="product-description">
+                    <div id="product-reward" class="product-reward">Награда: 0₽</div>
+                    <p id="product-description">Описание продукта</p>
+                </div>
+            </div>
+            
+            <div class="product-requirements">
+                <h2>Требования</h2>
+                <ul id="product-requirements">
+                    <!-- Требования будут добавлены динамически -->
+                </ul>
+            </div>
+            
+            <div class="referral-section">
+                <h2>Реферальная ссылка</h2>
+                <div class="referral-link">
+                    <input type="text" id="referral-link-display" readonly>
+                    <button id="copy-link-button">Копировать</button>
+                </div>
+                <button id="share-link-button" class="share-button">Поделиться с друзьями</button>
+            </div>
+        </div>
+    </template>
+    
+    <!-- Шаблон профиля -->
+    <template id="profile-template">
+        <div class="profile-page">
+            <div class="profile-header">
+                <h1>Мой профиль</h1>
+            </div>
+            
+            <div class="user-info">
+                <div class="user-avatar">👤</div>
+                <div class="user-name" id="profile-name">Загрузка...</div>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-value" id="profile-balance">0₽</div>
+                    <div class="stat-label">Баланс</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💵</div>
+                    <div class="stat-value" id="profile-earned">0₽</div>
+                    <div class="stat-label">Заработано</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-value" id="profile-refs">0</div>
+                    <div class="stat-label">Рефералов</div>
+                </div>
+            </div>
+            
+            <div class="transactions-section">
+                <h2>Мои заявки</h2>
+                <div class="transactions-list" id="transactions-list">
+                    <!-- Транзакции будут добавлены динамически -->
+                </div>
+            </div>
+            
+            <div class="withdrawal-section">
+                <h2>Вывод средств</h2>
+                <button id="withdrawal-button" class="primary-button">Запросить вывод</button>
+            </div>
+        </div>
+    </template>
+    
+    <!-- Навигационное меню -->
+    <div class="bottom-nav">
+        <button class="nav-button" data-page="home">
+            <div class="nav-icon">🏠</div>
+            <div class="nav-label">Главная</div>
+        </button>
+        <button class="nav-button" data-page="catalog">
+            <div class="nav-icon">📋</div>
+            <div class="nav-label">Продукты</div>
+        </button>
+        <button class="nav-button" data-page="profile">
+            <div class="nav-icon">👤</div>
+            <div class="nav-label">Профиль</div>
+        </button>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/debug.js"></script>
+</body>
+</html> 
