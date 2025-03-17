@@ -1,0 +1,558 @@
+:root {
+    --primary-color: #2196F3;
+    --primary-light: #E3F2FD;
+    --primary-dark: #1976D2;
+    --accent-color: #FFC107;
+    --text-color: #212121;
+    --text-secondary: #757575;
+    --background-color: #F5F5F5;
+    --card-color: #FFFFFF;
+    --border-color: #E0E0E0;
+    --success-color: #4CAF50;
+    --warning-color: #FF9800;
+    --error-color: #F44336;
+    --tg-theme-bg-color: var(--background-color);
+    --tg-theme-text-color: var(--text-color);
+    --tg-theme-hint-color: var(--text-secondary);
+    --tg-theme-link-color: var(--primary-color);
+    --tg-theme-button-color: var(--primary-color);
+    --tg-theme-button-text-color: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--tg-theme-bg-color, var(--background-color));
+    color: var(--tg-theme-text-color, var(--text-color));
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 16px;
+    padding-bottom: 72px; /* Учитываем нижнюю навигацию */
+}
+
+/* Лоадер */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loader-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--primary-light);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.loader-text {
+    margin-top: 16px;
+    font-size: 16px;
+    color: var(--primary-color);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Заголовки */
+h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--tg-theme-text-color, var(--text-color));
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: var(--tg-theme-text-color, var(--text-color));
+}
+
+/* Секции */
+.welcome-section {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.stat-card {
+    flex: 1;
+    background-color: var(--card-color);
+    border-radius: 12px;
+    padding: 16px;
+    margin: 0 6px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 4px;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* Реферальная секция */
+.referral-section {
+    background-color: var(--card-color);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.referral-link {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.referral-link input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px 0 0 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.referral-link button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0 8px 8px 0;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.share-button {
+    width: 100%;
+    background-color: var(--tg-theme-button-color, var(--primary-color));
+    color: var(--tg-theme-button-text-color, white);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Категории */
+.categories-section {
+    margin-bottom: 24px;
+}
+
+.categories-container {
+    display: flex;
+    overflow-x: auto;
+    padding: 8px 0;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+.categories-container::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Opera */
+}
+
+.category-card {
+    min-width: 100px;
+    text-align: center;
+    padding: 12px 8px;
+    margin-right: 12px;
+    background-color: var(--card-color);
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.category-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.category-name {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Продукты */
+.popular-section {
+    margin-bottom: 24px;
+}
+
+.products-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.product-card {
+    display: flex;
+    background-color: var(--card-color);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.product-image {
+    width: 80px;
+    height: 80px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: white;
+}
+
+.product-info {
+    flex: 1;
+    padding: 12px;
+}
+
+.product-name {
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.product-reward {
+    color: var(--success-color);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* Страница каталога */
+.catalog-header {
+    margin-bottom: 16px;
+}
+
+.search-bar {
+    display: flex;
+    margin-bottom: 16px;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px 0 0 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.search-bar button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0 8px 8px 0;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.categories-tabs {
+    display: flex;
+    overflow-x: auto;
+    padding: 8px 0;
+    margin-bottom: 16px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.categories-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.category-tab {
+    padding: 8px 16px;
+    margin-right: 8px;
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    border-radius: 20px;
+    font-size: 14px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.category-tab.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.products-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Страница продукта */
+.product-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 12px;
+}
+
+.product-main {
+    margin-bottom: 24px;
+}
+
+.product-page .product-image {
+    width: 100%;
+    height: 180px;
+    margin-bottom: 16px;
+    border-radius: 12px;
+}
+
+.product-page .product-reward {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.product-requirements {
+    background-color: var(--card-color);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-requirements ul {
+    padding-left: 20px;
+}
+
+.product-requirements li {
+    margin-bottom: 8px;
+}
+
+/* Страница профиля */
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.user-avatar {
+    width: 64px;
+    height: 64px;
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    margin-right: 16px;
+}
+
+.user-name {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.transactions-section {
+    background-color: var(--card-color);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.transaction-item:last-child {
+    border-bottom: none;
+}
+
+.transaction-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.transaction-name {
+    font-weight: 500;
+}
+
+.transaction-amount {
+    color: var(--success-color);
+    font-weight: 500;
+}
+
+.transaction-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.transaction-status {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+.status-approved {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.status-pending {
+    background-color: var(--warning-color);
+    color: white;
+}
+
+.status-rejected {
+    background-color: var(--error-color);
+    color: white;
+}
+
+.withdrawal-section {
+    background-color: var(--card-color);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.primary-button {
+    background-color: var(--tg-theme-button-color, var(--primary-color));
+    color: var(--tg-theme-button-text-color, white);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Нижняя навигация */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 56px;
+    background-color: var(--card-color);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+.nav-button {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px 0;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+}
+
+.nav-button.active {
+    color: var(--primary-color);
+}
+
+.nav-icon {
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.nav-label {
+    font-size: 12px;
+}
+
+/* Пустое состояние */
+.empty-state {
+    text-align: center;
+    padding: 32px 16px;
+    color: var(--text-secondary);
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Адаптация для Telegram WebApp */
+.telegram-app {
+    --tg-theme-bg-color: var(--background-color);
+    --tg-theme-text-color: var(--text-color);
+    --tg-theme-hint-color: var(--text-secondary);
+    --tg-theme-link-color: var(--primary-color);
+    --tg-theme-button-color: var(--primary-color);
+    --tg-theme-button-text-color: white;
+}
+
+/* Адаптивный дизайн */
+@media (min-width: 768px) {
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+} 
