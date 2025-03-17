@@ -1,0 +1,62 @@
+{
+  "users": {
+    "7934395190": {
+      "userId": 7934395190,
+      "username": "username",
+      "balance": 2500,
+      "totalEarned": 5800,
+      "refCount": 3,
+      "refLink": "https://t.me/esfajshiaoiodjioawjiobot?start=7934395190",
+      "categories": [
+        {"id": 1, "name": "Кредитные карты", "icon": "💳"},
+        {"id": 2, "name": "Дебетовые карты", "icon": "💰"},
+        {"id": 3, "name": "Ипотека", "icon": "🏠"},
+        {"id": 4, "name": "Инвестиции", "icon": "📈"}
+      ],
+      "popularProducts": [
+        {"id": 1, "name": "Альфа-Банк 100 дней", "reward": 3000, "image": "https://alphabank.ru/f/media/logo.png"},
+        {"id": 2, "name": "Тинькофф Black", "reward": 2500, "image": "https://acdn.tinkoff.ru/static/pages/files/8b969c4e-3.jpg"},
+        {"id": 3, "name": "Сбер СберПрайм", "reward": 1800, "image": "https://sber.ru/logo.png"},
+        {"id": 4, "name": "ВТБ Мультикарта", "reward": 1500, "image": "https://vtb.ru/logo.png"}
+      ],
+      "transactions": [
+        {"id": 1, "product": "Альфа-Банк 100 дней", "amount": 3000, "status": "approved", "date": "2023-06-15"},
+        {"id": 2, "product": "Тинькофф Black", "amount": 2500, "status": "pending", "date": "2023-06-20"}
+      ]
+    }
+  },
+  "products": {
+    "1": {
+      "id": 1,
+      "name": "Альфа-Банк 100 дней",
+      "description": "Кредитная карта с беспроцентным периодом до 100 дней",
+      "reward": 3000,
+      "image": "https://alphabank.ru/f/media/logo.png",
+      "requirements": ["Гражданство РФ", "Возраст от 18 лет", "Постоянный доход"],
+      "refLink": "https://alfabank.ru/credit-cards/100-days/"
+    },
+    "2": {
+      "id": 2,
+      "name": "Тинькофф Black",
+      "description": "Дебетовая карта с кэшбэком до 30%",
+      "reward": 2500,
+      "image": "https://acdn.tinkoff.ru/static/pages/files/8b969c4e-3.jpg",
+      "requirements": ["Гражданство РФ", "Возраст от 18 лет"],
+      "refLink": "https://www.tinkoff.ru/cards/debit-cards/tinkoff-black/"
+    }
+  },
+  "categories": {
+    "1": {
+      "id": 1,
+      "name": "Кредитные карты",
+      "icon": "💳",
+      "products": [1]
+    },
+    "2": {
+      "id": 2,
+      "name": "Дебетовые карты",
+      "icon": "💰",
+      "products": [2]
+    }
+  }
+} 
